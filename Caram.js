@@ -1,32 +1,30 @@
 import Player from "./Player";
 import Coin from "./Coin";
-import Strike from "./Strike";
 
 export default class Caram {
   constructor() {
     this.players = [new Player(), new Player()];
     this.coin = new Coin();
-    this.strike = new Strike();
   }
   play(player, option) {
     switch (option) {
       case 1:
-        this.strike.strike(player, this.coin);
+        player.strike(this.coin);
         break;
       case 2:
-        this.strike.multiStrike(player, this.coin);
+        player.multiStrike(this.coin);
         break;
       case 3:
-        this.strike.redStrike(player, this.coin);
+        player.redStrike(this.coin);
         break;
       case 4:
-        this.strike.strikerStrike(player, this.coin);
+        player.strikerStrike(this.coin);
         break;
       case 5:
-        this.strike.defunctCoin(player, this.coin);
+        player.defunctCoin(this.coin);
         break;
       default:
-        this.strike.none(player);
+        player.none();
         break;
     }
     //Edge condition on foul -> 3 non pocket turn -> 3
