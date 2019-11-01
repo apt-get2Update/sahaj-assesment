@@ -52,7 +52,7 @@ export default class Player {
     this.point -= 2;
     this.fouls += 1;
   }
-  none(player) {
+  none() {
     this.notPucketedTurns += 1;
   }
 }

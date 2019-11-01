@@ -1,9 +1,10 @@
 import Caram from "./Caram";
 
 test("test config", () => {
-//   expect(sum(1, 2)).toBe(3);
-console.log("test running success fully");
 let caram = new Caram();
-caram.startCaram([[1,2,3,4,5,6,7,8,9,10],[1,2,3,4,5,6,7,8,9,10]])
-console.log("test running success fully");
+//change input compination here
+caram.startCaram([
+  [1, 1, 2, 1, 5, 1, 1, 1, 1, 1, 6],
+  [2, 3, 6, 6, 6, 7, 8, 9, 10, 3, 3]
+]);
 });

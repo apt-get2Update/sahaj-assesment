@@ -36,12 +36,15 @@ export default class Caram {
       console.log(playersCommends, "playersCommends");
     let i = 0;
     let ci = 0
-    while (this.coin.black > 0 || this.coin.red > 0) {
-    console.log(this.coin.black, this.coin.red );
-      this.play(this.players[i % 2], playersCommends[i % 2][ci]);
-      ci = i % 2  > 0 ? ci + 1 : ci;
-      i = i + 1;
-    }
+     while (
+       (this.coin.black > 0 || this.coin.red > 0) &&
+       playersCommends[0].length > ci
+     ) {
+       console.log(this.coin.black, this.coin.red);
+       this.play(this.players[i % 2], playersCommends[i % 2][ci]);
+       ci = i % 2 > 0 ? ci + 1 : ci;
+       i = i + 1;
+     }
     this.gameResult();
   }
 
