@@ -16,6 +16,5 @@
     "jest": "^24.9.0"
   },
   "dependencies": {
-    "babel-node": "^0.0.1-security"
-  }
+    }
 }

@@ -1,23 +1,17 @@
-import Caram from "./Caram";
-
-// test("test config", () => {
-// let caram = new Caram();
-// //change input compination here
-// caram.startCaram();
-// });
+import Caram from "../src/Caram";
 
 describe('Caram test', () => {
-    describe("checkWinningCompination", () => {
+    describe("checkWinningCombination", () => {
       const caram = new Caram();
-      test('should return false when both players below five points', () => {
-        expect(caram.checkWinningCompination(4, 1)).toBe(false);
-      })
+      test("should return false when both players below five points", () => {
+        expect(caram.checkWinningCombination(4, 1)).toBe(false);
+      });
       test("should return false when point diff below three", () => {
-        expect(caram.checkWinningCompination(8, 6)).toBe(false);
+        expect(caram.checkWinningCombination(8, 6)).toBe(false);
       });
       test("should return false when point diff higher then equals three", () => {
-        expect(caram.checkWinningCompination(8, 3)).toBe(true);
-        expect(caram.checkWinningCompination(8, 5)).toBe(true);
+        expect(caram.checkWinningCombination(8, 3)).toBe(true);
+        expect(caram.checkWinningCombination(8, 5)).toBe(true);
       });
     });
     describe("gameresult", () => {

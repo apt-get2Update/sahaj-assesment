@@ -47,9 +47,9 @@ export default class Caram {
 
   gameResult(p1,p2) {
     let result  = "";
-    if (this.checkWinningCompination(p1, p2)) {
+    if (this.checkWinningCombination(p1, p2)) {
       result = `Player 1 won the game. Final Score: ${p1}-${p2}`;
-    } else if (this.checkWinningCompination(p2, p1)) {
+    } else if (this.checkWinningCombination(p2, p1)) {
       result = `Player 2 won the game. Final Score: ${p1}-${p2}`;
     } else {
       result = `Match draw`;
@@ -58,7 +58,7 @@ export default class Caram {
     return result
   }
 
-  checkWinningCompination(p1, p2) {
+  checkWinningCombination(p1, p2) {
     return p1 > p2 && p1 >= 5 && p1 - p2 >= 3;
   }
 }

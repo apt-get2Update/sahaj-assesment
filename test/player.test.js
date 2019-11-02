@@ -1,5 +1,5 @@
-import Player from "./Player";
-import Coin from "./Coin";
+import Player from "../src/Player";
+import Coin from "../src/Coin";
 
 describe("Testing Player", () => {
   describe("single strike", () => {
