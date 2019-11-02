@@ -9,24 +9,24 @@ export default class CaramBoard {
   }
   play(player, option) {
     switch (option) {
-      case 1:
+      case "strike":
         player.strike();
         this.coins.reduceBlackCoin(1);
         break;
-      case 2:
+      case "multiStrike":
         player.multiStrike(this.coin);
         this.coins.reduceBlackCoin(2);
         break;
-      case 3:
+      case "redStrike":
         if (this.coins.getRedCoin() !== 0) {
           player.redStrike();
           this.coins.reduceRedCoin();
         }
         break;
-      case 4:
+      case "strikerStrike":
         player.strikerStrike();
         break;
-      case 5:
+      case "defunctCoin":
         player.defunctCoin();
         break;
       default:

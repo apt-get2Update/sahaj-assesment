@@ -1,4 +1,5 @@
 import CaramBoard from "../src/CaramBoard";
+import { inputParser } from "../src/utils/inputParser";
 
 describe('Caram test', () => {
     describe("isWinningCombination", () => {
@@ -45,20 +46,24 @@ describe('Caram test', () => {
     });
     describe('play', () => {
       test("Match draw", () => {
-        const playerTurns = [[1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1]];
-        expect(new CaramBoard().startCaram(playerTurns)).toBe(
+
+        const player1Turns = inputParser([1, 1, 1, 1, 1, 1, 1]);
+        const player2Turns = inputParser( [1, 1, 1, 1, 1, 1, 1]);
+        expect(new CaramBoard().startCaram([player1Turns,player2Turns])).toBe(
           "Match draw. Final Score: 7-7"
         );
       });
       test("Win Player1", () => {
-        const playerTurns = [[1, 3, 2, 1, 6, 6, 6], [2, 5, 1, 2, 2, 1, 1]];
-        expect(new CaramBoard().startCaram(playerTurns)).toBe(
+        const player1Turns = inputParser([1, 3, 2, 1, 6, 6, 6]);
+        const player2Turns = inputParser([2, 5, 1, 2, 2, 1, 1]);
+        expect(new CaramBoard().startCaram([player1Turns, player2Turns])).toBe(
           "Player 1 won the game. Final Score: 7-3"
         );
       });
       test("Win Player2", () => {
-        const playerTurns = [[1, 1, 5, 1, 6, 6, 6], [2, 3, 1, 2, 2, 1, 1]];
-        expect(new CaramBoard().startCaram(playerTurns)).toBe(
+        const player1Turns = inputParser([1, 1, 5, 1, 6, 6, 6]);
+        const player2Turns = inputParser([2, 3, 1, 2, 2, 1, 1]);
+        expect(new CaramBoard().startCaram([player1Turns, player2Turns])).toBe(
           "Player 2 won the game. Final Score: 1-10"
         );
       });

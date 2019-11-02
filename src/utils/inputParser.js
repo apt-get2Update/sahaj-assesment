@@ -1,4 +1,4 @@
-function turnMapper(){
+function turnMapper(key){
     switch (key) {
       case 1:
         return 'strike';
