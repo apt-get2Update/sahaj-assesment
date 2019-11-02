@@ -1,4 +1,4 @@
-export default class Coin {
+export default class Coins {
   black = 9;
   red = 1;
   addBlackCoin(num) {
@@ -19,7 +19,7 @@ export default class Coin {
   getRedCoin() {
     return this.red;
   }
-  static getInstance(){
-      return new Coin();
+  hasCoinLeft(){
+    return this.black > 0 || this.red > 0;
   }
 }

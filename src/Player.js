@@ -1,63 +1,58 @@
-const FOULS_COUNT = 3; //
-const SUCCESSIVE_TURN = 3;
+import { FOULS_COUNT, SUCCESSIVE_TURN } from "./constants";
+
 export default class Player {
-  point = 0;
-  notPucketedTurns = 0;
+  points = 0;
+  notPocketedTurns = 0;
   fouls = 0;
-  getPoint() {
-    return this.point;
+  getPoints() {
+    return this.points;
   }
-  getnotPucketedTurns() {
-    return this.notPucketedTurns;
+  getNotPocketedTurns() {
+    return this.notPocketedTurns;
   }
 
   getFouls() {
     return this.fouls;
   }
 
-  hasReachedFouls() {
+  handleFouls() {
     if (this.fouls >= FOULS_COUNT) {
-      this.point -= 1;
+      this.points -= 1;
       this.fouls = 0;
     }
   }
   hasReachedNonPocketTurns() {
-    if (this.notPucketedTurns >= SUCCESSIVE_TURN) {
-      this.point -= 1;
-      this.notPucketedTurns = 0;
+    if (this.notPocketedTurns >= SUCCESSIVE_TURN) {
+      this.points -= 1;
+      this.notPocketedTurns = 0;
     }
   }
-  strike(coin) {
-    this.point += 1;
-    coin.reduceBlackCoin(1);
+  strike() {
+    this.points += 1;
   }
-  multiStrike(coin) {
-    this.point += 2;
-    coin.reduceBlackCoin(2);
+  multiStrike() {
+    this.points += 2;
   }
-  redStrike(coin) {
-    if (coin.getRedCoin() !== 0) {
-      this.point += 3;
-      coin.reduceRedCoin();
-    }
+  redStrike() {
+    this.points += 3;
   }
   strikerStrike() {
     this.fouls += 1;
-    if (this.point > 0) {
-      this.point -= 1;
-      this.hasReachedFouls();
+    if (this.points > 0) {
+      this.points -= 1;
+      this.handleFouls();
     }
   }
   defunctCoin() {
     this.fouls += 1;
-    if (this.point > 0) {
-      this.point -= 2;
-      this.hasReachedFouls();
+    if (this.points > 0) {
+      this.points -= 2;
+      this.handleFouls();
     }
   }
-  none() {
-    this.notPucketedTurns += 1;
-    if (this.point > 0) {
+  noPocketedAction() {
+    this.notPocketedTurns += 1;
+    if (this.points > 0) {
       this.hasReachedNonPocketTurns();
     }
   }

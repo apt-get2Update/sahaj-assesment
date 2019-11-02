@@ -1,58 +1,64 @@
-import Caram from "../src/Caram";
+import CaramBoard from "../src/CaramBoard";
 
 describe('Caram test', () => {
-    describe("checkWinningCombination", () => {
-      const caram = new Caram();
+    describe("isWinningCombination", () => {
+      const caramBoard = new CaramBoard();
       test("should return false when both players below five points", () => {
-        expect(caram.checkWinningCombination(4, 1)).toBe(false);
+        expect(caramBoard.isWinningCombination(4, 1)).toBe(false);
       });
       test("should return false when point diff below three", () => {
-        expect(caram.checkWinningCombination(8, 6)).toBe(false);
+        expect(caramBoard.isWinningCombination(8, 6)).toBe(false);
       });
       test("should return false when point diff higher then equals three", () => {
-        expect(caram.checkWinningCombination(8, 3)).toBe(true);
-        expect(caram.checkWinningCombination(8, 5)).toBe(true);
+        expect(caramBoard.isWinningCombination(8, 3)).toBe(true);
+        expect(caramBoard.isWinningCombination(8, 5)).toBe(true);
       });
     });
     describe("gameresult", () => {
-      const caram = new Caram();
+      const caramBoard = new CaramBoard();
       test("Match draw", () => {
-        const p1 = 4,
-          p2 = 1;
-        expect(caram.gameResult(p1, p2)).toBe("Match draw");
+        const player1Points = 4,
+          player2Points = 1;
+        expect(caramBoard.gameResult(player1Points, player2Points)).toBe(
+          "Match draw. Final Score: 4-1"
+        );
       });
       test("Match draw", () => {
-        const p1 = 8,
-          p2 = 6;
-        expect(caram.gameResult(p1, p2)).toBe("Match draw");
+        const player1Points = 8,
+          player2Points = 6;
+        expect(caramBoard.gameResult(player1Points, player2Points)).toBe(
+          "Match draw. Final Score: 8-6"
+        );
       });
       test("Win Player1", () => {
-        const p1 = 8,
-          p2 = 3;
-        expect(caram.gameResult(p1,p2)).toBe(`Player 1 won the game. Final Score: ${p1}-${p2}`);
+        const player1Points = 8,
+          player2Points = 3;
+        expect(caramBoard.gameResult(player1Points,player2Points)).toBe(`Player 1 won the game. Final Score: ${player1Points}-${player2Points}`);
       });
       test("Win Player2", () => {
-        const p1 = 5,
-          p2 = 8;
-        expect(caram.gameResult(p1, p2)).toBe(
-          `Player 2 won the game. Final Score: ${p1}-${p2}`
+        const player1Points = 5,
+          player2Points = 8;
+        expect(caramBoard.gameResult(player1Points, player2Points)).toBe(
+          `Player 2 won the game. Final Score: ${player1Points}-${player2Points}`
         );
       });
     });
     describe('play', () => {
       test("Match draw", () => {
-        const comments = [[1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1]];
-        expect(new Caram().startCaram(comments)).toBe("Match draw");
+        const playerTurns = [[1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1]];
+        expect(new CaramBoard().startCaram(playerTurns)).toBe(
+          "Match draw. Final Score: 7-7"
+        );
       });
       test("Win Player1", () => {
-        const comments = [[1, 3, 2, 1, 6, 6, 6], [2, 5, 1, 2, 2, 1, 1]];
-        expect(new Caram().startCaram(comments)).toBe(
+        const playerTurns = [[1, 3, 2, 1, 6, 6, 6], [2, 5, 1, 2, 2, 1, 1]];
+        expect(new CaramBoard().startCaram(playerTurns)).toBe(
           "Player 1 won the game. Final Score: 7-3"
         );
       });
       test("Win Player2", () => {
-        const comments = [[1, 1, 5, 1, 6, 6, 6], [2, 3, 1, 2, 2, 1, 1]];
-        expect(new Caram().startCaram(comments)).toBe(
+        const playerTurns = [[1, 1, 5, 1, 6, 6, 6], [2, 3, 1, 2, 2, 1, 1]];
+        expect(new CaramBoard().startCaram(playerTurns)).toBe(
           "Player 2 won the game. Final Score: 1-10"
         );
       });
