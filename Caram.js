@@ -27,43 +27,37 @@ export default class Caram {
         player.none();
         break;
     }
-    //Edge condition on foul -> 3 non pocket turn -> 3
-    player.hasReachedFouls();
-    player.hasReachedNonPocketTurns();
   }
   //playerCommeds [[],[]]
   startCaram(playersCommends) {
-      console.log(playersCommends, "playersCommends");
+    
     let i = 0;
     let ci = 0
      while (
-       (this.coin.black > 0 || this.coin.red > 0) &&
-       playersCommends[0].length > ci
+       (this.coin.black > 0 || this.coin.red > 0) && playersCommends[0].length > ci && playersCommends[1].length > ci
      ) {
-       console.log(this.coin.black, this.coin.red);
        this.play(this.players[i % 2], playersCommends[i % 2][ci]);
        ci = i % 2 > 0 ? ci + 1 : ci;
        i = i + 1;
      }
-    this.gameResult();
+     const p1 = this.players[0].getPoint();
+     const p2 = this.players[1].getPoint();
+    return this.gameResult(p1,p2);
   }
 
-  gameResult() {
-    const p1 = this.players[0];
-    const p2 = this.players[1];
-
-    if (this.checkWinningCompination(p1.point, p2.point)) {
-      console.log(
-        `Player 1 won the game. Final Score: ${p1.point}-${p2.point}`
-      );
-    } else if (this.checkWinningCompination(p2.point, p1.point)) {
-      console.log(
-        `Player 2 won the game. Final Score: ${p2.point}-${p1.point}`
-      );
+  gameResult(p1,p2) {
+    let result  = "";
+    if (this.checkWinningCompination(p1, p2)) {
+      result = `Player 1 won the game. Final Score: ${p1}-${p2}`;
+    } else if (this.checkWinningCompination(p2, p1)) {
+      result = `Player 2 won the game. Final Score: ${p1}-${p2}`;
     } else {
-      console.log(`Match draw`);
+      result = `Match draw`;
     }
+    console.log(result)
+    return result
   }
+
   checkWinningCompination(p1, p2) {
     return p1 > p2 && p1 >= 5 && p1 - p2 >= 3;
   }
