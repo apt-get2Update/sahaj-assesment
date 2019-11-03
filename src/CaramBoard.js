@@ -60,7 +60,7 @@ export default class CaramBoard {
     } else {
       result = `Match draw.`;
     }
-    console.log(result)
+    console.log(`${result} ${finalScore}`)
     return `${result} ${finalScore}`;
   }
 
