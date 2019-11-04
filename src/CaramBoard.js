@@ -7,31 +7,39 @@ export default class CaramBoard {
     this.players = [new Player(), new Player()];
     this.coins = new Coins();
   }
-  play(player, option) {
-    switch (option) {
-      case "strike":
-        player.strike();
-        this.coins.reduceBlackCoin(1);
-        break;
-      case "multiStrike":
-        player.multiStrike();
-        this.coins.reduceBlackCoin(2);
-        break;
-      case "redStrike":
-        if (this.coins.getRedCoin() !== 0) {
-          player.redStrike();
-          this.coins.reduceRedCoin();
+  actionMapper(player,coins){
+      return {
+        strike: {
+          playerAction: ()=>player.strike(),
+          coinAction: ()=>coins.reduceBlackCoin(1)
+        },
+        multiStrike: {
+          playerAction: ()=>player.multiStrike(),
+          coinAction: ()=>coins.reduceBlackCoin(2)
+        },
+        redStrike: {
+          playerAction: ()=>player.redStrike(),
+          coinAction: ()=>coins.reduceRedCoin(),
+          validation: coins.getRedCoin() !== 0
+        },
+        strikerStrike: {
+          playerAction: ()=>player.strikerStrike()
+        },
+        defunctCoin: {
+          playerAction: ()=>player.defunctCoin(),
+
+        },
+        none: {
+          playerAction: ()=>player.noPocketedAction()
         }
-        break;
-      case "strikerStrike":
-        player.strikerStrike();
-        break;
-      case "defunctCoin":
-        player.defunctCoin();
-        break;
-      default:
-        player.noPocketedAction();
-        break;
+      };
+  }
+
+  play(player, option) {
+    const {playerAction,coinAction=()=>{},validation = true} = this.actionMapper(player,this.coins)[option];
+    if(validation){
+      playerAction();
+      coinAction();
     }
   }
   //playerTurns [[],[]]
