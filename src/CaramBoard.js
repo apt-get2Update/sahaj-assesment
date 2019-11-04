@@ -14,7 +14,7 @@ export default class CaramBoard {
         this.coins.reduceBlackCoin(1);
         break;
       case "multiStrike":
-        player.multiStrike(this.coin);
+        player.multiStrike();
         this.coins.reduceBlackCoin(2);
         break;
       case "redStrike":
