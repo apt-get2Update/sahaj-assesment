@@ -1,6 +1,6 @@
 import Player from "./Player";
 import Coins from "./Coins";
-import { WIN_MARGIN, MIN_WIN_POINT } from "./constants";
+import { WIN_MARGIN, MIN_WIN_POINT } from "../utils/constants";
 
 export default class CaramBoard {
   constructor() {
@@ -26,8 +26,7 @@ export default class CaramBoard {
           playerAction: ()=>player.strikerStrike()
         },
         defunctCoin: {
-          playerAction: ()=>player.defunctCoin(),
-
+          playerAction: ()=>player.defunctCoin()
         },
         none: {
           playerAction: ()=>player.noPocketedAction()

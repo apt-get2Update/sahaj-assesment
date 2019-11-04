@@ -1,4 +1,4 @@
-import CaramBoard from "../src/CaramBoard";
+import CaramBoard from "../src/models/CaramBoard";
 import { inputParser } from "../src/utils/inputParser";
 
 describe('Caram test', () => {

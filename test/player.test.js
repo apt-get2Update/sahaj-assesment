@@ -1,4 +1,4 @@
-import Player from "../src/Player";
+import Player from "../src/models/Player";
 
 describe("Testing Player", () => {
   describe("single strike", () => {

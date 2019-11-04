@@ -1,4 +1,4 @@
-import { FOULS_COUNT, SUCCESSIVE_TURN } from "./constants";
+import { FOULS_COUNT, SUCCESSIVE_TURN } from "../utils/constants";
 
 export default class Player {
   points = 0;
